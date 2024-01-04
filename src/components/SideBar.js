@@ -1,30 +1,43 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
+import {
+  HomeIcon,
+  FilmIcon,
+  EnvelopeIcon,
+  MusicalNoteIcon,
+  TvIcon,
+  ClockIcon,
+  CloudArrowDownIcon,
+  ArrowTrendingUpIcon,
+  ShoppingCartIcon,
+  PuzzlePieceIcon,
+  Cog6ToothIcon,
+  FlagIcon,
+  QuestionMarkCircleIcon,
+} from "@heroicons/react/24/outline";
 const SideBar = () => {
   const isMenuOpen = useSelector((store) => store.app.isMenuOpen);
   if (!isMenuOpen) return null;
   return (
-    <div className=" side-bar max-h-screen hover:overflow-y-scroll overflow-hidden overscroll-contain  w-3/12 px-3 py-2 flex flex-col items-center   text-gray-900 text-sm sticky top-16 z-30 bg-white  ">
+    <div className=" side-bar max-h-screen min-w-fit hover:overflow-y-scroll overflow-hidden overscroll-contain  w-2/12 ps-2 py-2 lg:flex flex-col items-center   text-gray-900 text-sm sticky top-16 z-30 bg-white hidden  ">
       <div className="nav w-full py-3  border-b ">
         <ul>
           <li className="flex items-center   my-1 cursor-pointer  hover:bg-[#efefef] py-2 px-2 rounded-xl">
             <Link to="/" className="flex items-center">
-              <span className="material-icons-outlined me-5  ">home</span> Home
+              <HomeIcon className="h-6 w-6 me-5" /> Home
             </Link>
           </li>
           <li className="flex items-center   my-1 cursor-pointer  hover:bg-[#efefef] py-2 px-2 rounded-xl">
-            <span className="material-icons-outlined me-5 ">
-              ondemand_video
-            </span>
+            <FilmIcon className="h-6 w-6 me-5" />
             Shorts
           </li>
           <li className="flex items-center   my-1 cursor-pointer  hover:bg-[#efefef] py-2 px-2 rounded-xl">
-            <span className="material-icons-outlined me-5 ">email</span>
+            <EnvelopeIcon className="h-6 w-6 me-5" />
             Subscriptions
           </li>
           <li className="flex items-center   my-1 cursor-pointer  hover:bg-[#efefef] py-2 px-2 rounded-xl">
-            <span className="material-icons-outlined me-5 ">music_note</span>
+            <MusicalNoteIcon className="h-6 w-6 me-5" />
             Music
           </li>
         </ul>
@@ -32,25 +45,23 @@ const SideBar = () => {
       <div className="you py-3 w-full border-b">
         <ul>
           <li className="flex items-center   my-1 cursor-pointer  hover:bg-[#efefef] py-2 px-2 rounded-xl">
-            <span className="material-icons-outlined me-5 ">live_tv</span>Your
+            <TvIcon className="h-6 w-6 me-5" />
             Channel
           </li>
           <li className="flex items-center   my-1 cursor-pointer  hover:bg-[#efefef] py-2 px-2 rounded-xl">
-            <span className="material-icons-outlined me-5 ">history</span>
+            <ClockIcon className="h-6 w-6 me-5" />
             History
           </li>
           <li className="flex items-center   my-1 cursor-pointer  hover:bg-[#efefef] py-2 px-2 rounded-xl">
-            <span className="material-icons-outlined me-5 ">
-              ondemand_video
-            </span>
+            <FilmIcon className="h-6 w-6 me-5" />
             You Videos
           </li>
           <li className="flex items-center   my-1 cursor-pointer  hover:bg-[#efefef] py-2 px-2 rounded-xl">
-            <span className="material-icons-outlined me-5 ">watch_later</span>
+            <ClockIcon className="h-6 w-6 me-5" />
             Watch Later
           </li>
           <li className="flex items-center   my-1 cursor-pointer  hover:bg-[#efefef] py-2 px-2 rounded-xl">
-            <span className="material-icons-outlined me-5 ">download</span>
+            <CloudArrowDownIcon className="h-6 w-6 me-5" />
             Downloads
           </li>
         </ul>
@@ -58,54 +69,48 @@ const SideBar = () => {
       <div className="explore py-3 w-full border-b">
         <ul>
           <li className="flex items-center   my-1 cursor-pointer  hover:bg-[#efefef] py-2 px-2 rounded-xl">
-            <span className="material-icons-outlined me-5 ">trending_up</span>
+            <ArrowTrendingUpIcon className="h-6 w-6 me-5" />
             Trending
           </li>
           <li className="flex items-center   my-1 cursor-pointer  hover:bg-[#efefef] py-2 px-2 rounded-xl">
-            <span className="material-icons-outlined me-5 ">
-              shopping_basket
-            </span>
+            <ShoppingCartIcon className="h-6 w-6 me-5" />
             Shopping
           </li>
           <li className="flex items-center   my-1 cursor-pointer  hover:bg-[#efefef] py-2 px-2 rounded-xl">
-            <span className="material-icons-outlined me-5 ">music_note</span>
+            <MusicalNoteIcon className="h-6 w-6 me-5" />
             Music
           </li>
           <li className="flex items-center   my-1 cursor-pointer  hover:bg-[#efefef] py-2 px-2 rounded-xl">
-            <span className="material-icons-outlined me-5 ">
-              ondemand_video
-            </span>
+            <FilmIcon className="h-6 w-6 me-5" />
             Films
           </li>
           <li className="flex items-center   my-1 cursor-pointer  hover:bg-[#efefef] py-2 px-2 rounded-xl">
-            {" "}
-            <span className="material-icons-outlined me-5 ">live_tv</span>Live
+            <TvIcon className="h-6 w-6 me-5" />
+            Live
           </li>
           <li className="flex items-center   my-1 cursor-pointer  hover:bg-[#efefef] py-2 px-2 rounded-xl">
-            {" "}
-            <span className="material-icons-outlined me-5 ">games</span>Gaming
+            <PuzzlePieceIcon className="h-6 w-6 me-5" />
+            Gaming
           </li>
         </ul>
       </div>
       <div className="contact-us w-full py-3 border-b">
         <ul>
           <li className="flex items-center   my-1 cursor-pointer  hover:bg-[#efefef] py-2 px-2 rounded-xl">
-            {" "}
-            <span className="material-icons-outlined me-5 ">settings</span>
+            <Cog6ToothIcon className="h-6 w-6 me-5" />
             Settings
           </li>
           <li className="flex items-center   my-1 cursor-pointer  hover:bg-[#efefef] py-2 px-2 rounded-xl">
-            {" "}
-            <span className="material-icons-outlined me-5 ">report</span>Report
+            <FlagIcon className="h-6 w-6 me-5" />
+            Report
           </li>
           <li className="flex items-center   my-1 cursor-pointer  hover:bg-[#efefef] py-2 px-2 rounded-xl">
-            {" "}
-            <span className="material-icons-outlined me-5 ">help</span>Help
+            <QuestionMarkCircleIcon className="h-6 w-6 me-5" />
+            Help
           </li>
           <li className="flex items-center   my-1 cursor-pointer  hover:bg-[#efefef] py-2 px-2 rounded-xl">
-            {" "}
-            <span className="material-icons-outlined me-5 ">feedback</span>Send
-            Feedback
+            <EnvelopeIcon className="h-6 w-6 me-5" />
+            Send Feedback
           </li>
         </ul>
       </div>

@@ -3,6 +3,8 @@ import { toggleMenu } from "./utils/appSlice";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { PlayCircleIcon } from "@heroicons/react/24/solid";
+import { MagnifyingGlassIcon, Bars3Icon } from "@heroicons/react/24/outline";
 import useSearchSuggestions from "./hooks/useSearchSuggestions";
 import { cacheResults } from "./utils/searchSlice";
 import { setSearchString } from "./utils/displaySearchSlice";
@@ -15,17 +17,21 @@ const Header = () => {
   const [showSuggestions, setShowSuggestions] = useState(false);
   const searchCache = useSelector((store) => store.search);
   useEffect(() => {
-    let timerId = setTimeout(async () => {
-      if (searchCache[searchQuery]) {
-        setSuggestions(searchCache[searchQuery]);
-      } else {
-        let result = await getSearchSuggestions(searchQuery);
+    const fetchData = async () => {
+      try {
+        // Your API call here
+        const result = await getSearchSuggestions(searchQuery);
         dispatch(cacheResults({ [searchQuery]: result }));
         setSuggestions(result);
+      } catch (error) {
+        console.error("Error fetching search suggestions:", error);
       }
-    }, 300);
+    };
+
+    const timerId = setTimeout(fetchData, 300);
+
     return () => clearTimeout(timerId);
-  }, [searchQuery]);
+  }, [searchQuery, searchCache, dispatch, getSearchSuggestions]);
 
   const toggleMenuHandler = () => {
     dispatch(toggleMenu());
@@ -38,36 +44,30 @@ const Header = () => {
   };
 
   return (
-    <header className="w-full sticky top-0 z-50 bg-white">
-      <div className="w-full flex  justify-center items-center px-4 py-2">
-        <div className=" logo-area  w-3/12 flex justify-center items-center  ">
-          <div
-            className="w-2/12 hamburger cursor-pointer font-thin text-xl"
-            onClick={toggleMenuHandler}
-          >
-            &#9776;
+    <header className="w-full sticky top-0 z-50 bg-white  ">
+      <div className="w-full flex justify-between lg:gap-6 items-center px-4 py-2">
+        <div className="sm:flex items-center justify-center sm:gap-2 lg:gap-4 ">
+          <div onClick={toggleMenuHandler}>
+            <Bars3Icon className="w-7 h-7  hamburger cursor-pointer hidden lg:block" />
           </div>
 
-          <div className="logo w-10/12 flex items-center  ">
-            <span className="material-icons me-1 text-[#FF0000] ">
-              play_circle
-            </span>
-            <p className="text-xl tracking-widest  text-gray-800">
-              <Link to="/" onMouseDown={() => toggleMenuHandler()}>
-                TUBEVERSE
-              </Link>
-            </p>
-          </div>
+          <Link to="/">
+            <PlayCircleIcon className="w-8 h-8 text-[#FF0000]" />
+          </Link>
+
+          <p className="lg:text-xl sm:text-lg  justify-center items-center  tracking-widest  text-gray-800 sm:flex hidden">
+            <Link to="/">TUBEVERSE</Link>
+          </p>
         </div>
 
-        <div className="search-area relative border-  w-7/12 flex justify-center items-center px-3  ">
+        <div className="search-area relative sm:w-7/12 md:w-8/12 lg:w-7/12 flex justify-center items-center px-3   ">
           <div className="w-full">
             <input
               type="text"
               name=""
               id=""
               placeholder="search"
-              className="py-2 px-4  w-full shadow-inner  border rounded-l-full"
+              className=" py-1 lg:py-2 px-4  w-full   shadow-inner  border  border-gray-300 focus:outline-blue-400 rounded-l-full"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               onFocus={() => setShowSuggestions(true)}
@@ -95,21 +95,19 @@ const Header = () => {
             )}
           </div>
           <button
-            className=" border rounded-r-full py-2 px-4 flex justify-center items-center  bg-[#F0F0F0]"
+            className=" border rounded-r-full py-1 px-3 lg:py-2 lg:px-4 flex justify-center items-center  bg-[#F0F0F0]"
             onClick={() => handleSearchClick(searchQuery)}
           >
-            <span className="material-icons ">search</span>
+            <MagnifyingGlassIcon className=" h-6 w-6 " />
           </button>
         </div>
 
-        <div className="w-2/12  user-area ">
-          <div className="user-icon flex justify-end">
-            <img
-              src="https://yt3.ggpht.com/yti/ADpuP3OgLFzT0W3iKwNzlzFXq-9fpjP8_2CfMdO2K3ZRaw=s88-c-k-c0x00ffffff-no-rj"
-              alt=""
-              className="w-10 rounded-full"
-            />
-          </div>
+        <div className="user-icon flex justify-end">
+          <img
+            src="https://yt3.ggpht.com/yti/ADpuP3OgLFzT0W3iKwNzlzFXq-9fpjP8_2CfMdO2K3ZRaw=s88-c-k-c0x00ffffff-no-rj"
+            alt=""
+            className="w-10 rounded-full"
+          />
         </div>
       </div>
     </header>
