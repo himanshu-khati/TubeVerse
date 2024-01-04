@@ -8,7 +8,7 @@ const SearchResultsPage = () => {
   );
 
   return (
-    <div>
+    <div className="min-h-screen">
       {results.length &&
         results.map((info) => (
           <SearchCard key={info.id.videoId} cardInfo={info} />

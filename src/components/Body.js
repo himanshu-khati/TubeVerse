@@ -3,7 +3,7 @@ import SideBar from "./SideBar";
 import { Outlet } from "react-router-dom";
 const Body = () => {
   return (
-    <div className="body w-full flex relative">
+    <div className="body w-full flex relative min-h-screen">
       <SideBar />
       <Outlet />
     </div>

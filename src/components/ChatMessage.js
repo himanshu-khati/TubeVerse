@@ -1,13 +1,12 @@
 import React from "react";
+import { UserCircleIcon } from "@heroicons/react/24/solid";
 const ChatMessage = ({ name, message }) => {
   return (
-    <div className="flex gap-3 items-start  p-2 rounded-lg border my-1">
-      <img
-        src="https://icons.iconarchive.com/icons/graphicloads/flat-finance/256/person-icon.png"
-        alt=""
-        className="w-6 h-6 rounded-full"
-      />
-        <span className="text-gray-500 font-medium">{name}</span>
+    <div className="flex flex-col   justify-center  p-1 rounded-lg border mb-2">
+      <div className="flex  items-center">
+        <UserCircleIcon className="h-5 w-5 text-gray-400 me-1" />
+        <span className="text-gray-500 text-sm lg:text-base">{name}</span>
+      </div>
       <div className="flex items-center gap-2 text-sm">
         <span>{message}</span>
       </div>
