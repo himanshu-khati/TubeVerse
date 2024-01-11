@@ -4,19 +4,19 @@ import { closeMenu } from "./utils/appSlice";
 import { useSearchParams } from "react-router-dom";
 import CommentsContainer from "./CommentsContainer";
 import useVideoInfo from "./hooks/useVideoInfo";
-import {HandThumbUpIcon, EyeIcon} from "@heroicons/react/24/solid"
+import Shimmer from "./Shimmer";
+import { HandThumbUpIcon, EyeIcon } from "@heroicons/react/24/solid";
 import LiveChat from "./LiveChat";
 const WatchPage = () => {
   const dispatch = useDispatch();
   const [searchParams] = useSearchParams();
   const isMenuOpen = useSelector((store) => store.app.isMenuOpen);
-  console.log(isMenuOpen);
   const videoId = searchParams.get("v");
   const videoData = useVideoInfo(videoId);
   useEffect(() => {
     dispatch(closeMenu());
   }, []);
-  if (!videoData) return <p>shimmer ui...</p>;
+  if (!videoData) return <Shimmer />;
   const { channelTitle, title } = videoData.snippet;
   const { likeCount, viewCount } = videoData.statistics;
 
@@ -48,11 +48,11 @@ const WatchPage = () => {
               </div>
               <div className="flex   gap-2 text-gray-800">
                 <div className=" flex bg-[#EAEAEA] text-sm items-center rounded-3xl px-3 py-1">
-                <HandThumbUpIcon className="w-4 h-4 me-1" />
+                  <HandThumbUpIcon className="w-4 h-4 me-1" />
                   {Math.round(likeCount / 1000)}K
                 </div>
                 <div className=" flex items-center bg-[#EAEAEA] text-sm  rounded-3xl px-3 py-1">
-                <EyeIcon className="w-4 h-4 me-1" />
+                  <EyeIcon className="w-4 h-4 me-1" />
                   {Math.round(viewCount / 1000)}K
                 </div>
               </div>

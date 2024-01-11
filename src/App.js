@@ -5,6 +5,7 @@ import MainContainer from "./components/MainContainer";
 import WatchPage from "./components/WatchPage";
 import SearchResultsPage from "./components/SearchResultsPage";
 import ResponsiveBottomMenu from "./components/ResponsiveBottomMenu";
+import ErrorPage from "./components/ErrorPage";
 function App() {
   return (
     <div className="font-roboto container mx-auto  ">
@@ -18,6 +19,7 @@ export const appRouter = createBrowserRouter([
   {
     path: "/",
     element: <App />,
+    errorElement : <ErrorPage />,
     children: [
       { path: "/", element: <MainContainer /> },
       { path: "/watch", element: <WatchPage /> },
