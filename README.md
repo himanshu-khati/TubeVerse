@@ -32,7 +32,7 @@ TubeVerse is hosted at [tubeverse.web.app](https://tubeverse.web.app).
 
 To run the project locally, follow these steps:
 
-1. Clone the repository: `git clone https://github.com/your-username/tubeverse.git`
+1. Clone the repository: `git clone https://github.com/himanshu-khati/tubeverse.git`
 2. Install dependencies: `npm install`
 3. Start the development server: `npm start`
 
